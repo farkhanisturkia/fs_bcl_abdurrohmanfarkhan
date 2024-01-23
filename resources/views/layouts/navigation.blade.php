@@ -28,6 +28,11 @@
                                 {{ __('Data armada') }}
                             </x-nav-link>
                         </div>
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-nav-link :href="route('pemesanan.index')" :active="request()->routeIs('pemesanan.index')">
+                                {{ __('Data pemesanan') }}
+                            </x-nav-link>
+                        </div>
                     @endif
 
                     @if (Auth()->user()->role == 'lapangan')
@@ -40,6 +45,20 @@
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                             <x-nav-link :href="route('pengiriman.index')" :active="request()->routeIs('pengiriman.index')">
                                 {{ __('Data pengiriman') }}
+                            </x-nav-link>
+                        </div>
+                    @endif
+
+                    @if (Auth()->user()->role == 'client')
+                        <!-- Navigation Links -->
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                                {{ __('Dashboard') }}
+                            </x-nav-link>
+                        </div>
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-nav-link :href="route('pemesanan.index')" :active="request()->routeIs('pemesanan.index')">
+                                {{ __('Data pemesanan') }}
                             </x-nav-link>
                         </div>
                     @endif
