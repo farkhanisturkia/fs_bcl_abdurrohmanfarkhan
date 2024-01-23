@@ -3,6 +3,7 @@
 use App\Models\Pengiriman;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ArmadaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PengirimanController;
 use Symfony\Component\Routing\Route as RoutingRoute;
@@ -45,7 +46,8 @@ Route::middleware('splade')->group(function () {
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
 
-    Route::resource('users', UserController::class);
+    // Route::resource('users', UserController::class);
+    Route::resource('armada', ArmadaController::class);
     Route::resource('pengiriman', PengirimanController::class);
 
     require __DIR__.'/auth.php';

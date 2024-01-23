@@ -6,7 +6,7 @@
             <x-splade-select name="role" label='Posisi'>
                 <option value="kantor">Kantor</option>
                 <option value="lapangan">Lapangan</option>
-             </x-splade-select>
+            </x-splade-select>
             <x-splade-input id="password" type="password" name="password" :label="__('Password')" required autocomplete="new-password" />
             <x-splade-input id="password_confirmation" type="password" name="password_confirmation" :label="__('Confirm Password')" required />
 

@@ -11,7 +11,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     {{-- <x-splade-form :for="$form" /> --}}
 
-                    <x-splade-form action="{{ route('pengiriman.store') }}" class="space-y-4">
+                    <x-splade-form action="{{ route('pengiriman.update', $pengiriman) }}" class="space-y-4" :default="$pengiriman" method="put">
                         {{-- <x-splade-input id="pengirim" type="text" name="pengirim" label="Pengirim" /> --}}
                         <x-splade-input id="nomor" type="text" name="nomor" label="Nomor Pengiriman" required />
                         <x-splade-input id="tanggal" type="date" name="tanggal" label="Tanggal Pengiriman" required />

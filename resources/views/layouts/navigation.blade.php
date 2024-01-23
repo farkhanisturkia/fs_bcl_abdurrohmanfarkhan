@@ -19,8 +19,13 @@
                             </x-nav-link>
                         </div>
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
-                                {{ __('Data users') }}
+                            <x-nav-link :href="route('pengiriman.index')" :active="request()->routeIs('pengiriman.index')">
+                                {{ __('Data pengiriman') }}
+                            </x-nav-link>
+                        </div>
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-nav-link :href="route('armada.index')" :active="request()->routeIs('armada.index')">
+                                {{ __('Data armada') }}
                             </x-nav-link>
                         </div>
                     @endif
