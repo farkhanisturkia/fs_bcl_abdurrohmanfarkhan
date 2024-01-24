@@ -10,6 +10,15 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
+        {{-- Map core --}}
+        <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"type="text/javascript"></script>
+
+        {{-- Map Service --}}
+        <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"type="text/javascript"></script>
+
+        {{-- credential --}}
+        <script type="text/javascript" src="js/credential.js"></script>
+
         <!-- Scripts -->
         @vite(['resources/js/app.js'])
         @spladeHead

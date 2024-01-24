@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('pemesan');
             $table->string('jenis');
+            $table->integer('armada_id');
             $table->date('tanggal');
             $table->longText('detail');
             $table->timestamps();

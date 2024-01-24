@@ -12,12 +12,12 @@
                     {{-- <x-splade-form :for="$form" /> --}}
 
                     <x-splade-form action="{{ route('pemesanan.store') }}" class="space-y-4">
-                        <x-splade-select name="jenis" label='Jenis Armada'>
+                        <x-splade-input id="tanggal" type="date" name="tanggal" label='Tanggal pemesanan'/>
+                        <x-splade-select name="armada_id" label='Jenis Armada'>
                             @foreach ($armadas as $armada)
-                                <option value="{{ $armada->jenis }}">{{ $armada->jenis }} Kapasitas {{ $armada->kapasitas }} KG</option>
+                            <option value="{{ $armada->id }}">{{ $armada->jenis }} Kapasitas {{ $armada->kapasitas }} KG</option>
                             @endforeach
                         </x-splade-select>
-                        <x-splade-input id="tanggal" type="date" name="tanggal" label='Tanggal pemesanan' autosize />
                         <x-splade-textarea id="detail" name="detail" label='Detail barang' autosize />
                         <x-splade-submit class="ml-4" label="Submit" />
                     </x-splade-form>

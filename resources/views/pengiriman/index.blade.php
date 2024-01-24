@@ -16,7 +16,10 @@
                     <x-splade-table :for="$pengirimen" pagination-scroll="preserve">
                         <x-splade-cell actions as="$pengiriman">
                             <Link href="{{ route('pengiriman.edit', $pengiriman) }}" class="px-3 py-2 bg-yellow-500 rounded text-white hover:bg-yellow-300 hover:text-black"> Ubah </Link>
-                            {{-- <Link href="{{ route('pengiriman.destroy', $pengiriman) }}" class="ms-2 px-2 py-1 bg-red-500 rounded text-white hover:bg-red-300 hover:text-black"> Hapus </Link> --}}
+                            @if ($pengiriman->status == 'Dalam perjalanan')
+                                
+                            <Link href="{{ route('pengiriman.show', $pengiriman) }}" class=" ms-2 px-3 py-2 bg-green-500 rounded text-white hover:bg-green-300 hover:text-black"> Checkin </Link>
+                            @endif
                             <x-splade-form 
                                 action="{{ route('pengiriman.destroy', $pengiriman) }}"
                                 method="delete"

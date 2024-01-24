@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArmadaController;
+use App\Http\Controllers\CheckinController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\PengirimanController;
@@ -48,6 +49,7 @@ Route::middleware('splade')->group(function () {
     Route::resource('armada', ArmadaController::class);
     Route::resource('pengiriman', PengirimanController::class);
     Route::resource('pemesanan', PemesananController::class);
+    Route::resource('checkin', CheckinController::class);
 
     require __DIR__.'/auth.php';
 });

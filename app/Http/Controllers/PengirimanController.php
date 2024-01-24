@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use App\Models\Pengiriman;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use ProtoneMedia\Splade\Facades\Toast;
 use ProtoneMedia\Splade\SpladeForm;
+use Illuminate\Support\Facades\Auth;
 use ProtoneMedia\Splade\SpladeTable;
+use ProtoneMedia\Splade\Facades\Toast;
 use ProtoneMedia\Splade\FormBuilder\Date;
 use ProtoneMedia\Splade\FormBuilder\Input;
 use ProtoneMedia\Splade\FormBuilder\Submit;
@@ -83,22 +84,40 @@ class PengirimanController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        Pengiriman::create([
-            'pengirim'  =>Auth::user()->name,
-            'nomor'     =>$request->nomor,
-            'tanggal'   =>$request->tanggal,
-            'asal'      =>$request->asal,
-            'tujuan'    =>$request->tujuan,
-            'status'    =>$request->status,
-            'detail'    =>$request->detail
-        ]);
+        $input = new DateTime($request->tanggal);
+        // dd($input);
 
-        // return redirect()->route('users.index');
+        function validateDate($input){
+            $today = new DateTime();
 
-        Toast::title('Data Pengiriman Tersimpan')->autoDismiss(3);
+            if ($input < $today) {
+                return false;
+            }else{
+                return true;
+            }
+        };
+        
+        if (validateDate($input)) {  
+            Pengiriman::create([
+                'pengirim'  =>Auth::user()->name,
+                'nomor'     =>$request->nomor,
+                'tanggal'   =>$request->tanggal,
+                'asal'      =>$request->asal,
+                'tujuan'    =>$request->tujuan,
+                'status'    =>$request->status,
+                'detail'    =>$request->detail
+            ]);
 
-        return to_route('pengiriman.index');
+            // return redirect()->route('users.index');
+
+            Toast::title('Data Pengiriman Tersimpan')->autoDismiss(3);
+
+            return to_route('pengiriman.index');
+        }else{
+            Toast::title('Tanggal tidak valid')->danger()->autoDismiss(3);
+
+            return to_route('pengiriman.index');
+        }
     }
 
     /**
@@ -124,19 +143,40 @@ class PengirimanController extends Controller
      */
     public function update(Request $request, Pengiriman $pengiriman)
     {
-        $pengiriman->update([
-            'pengirim'  =>Auth::user()->name,
-            'nomor'     =>$request->nomor,
-            'tanggal'   =>$request->tanggal,
-            'asal'      =>$request->asal,
-            'tujuan'    =>$request->tujuan,
-            'status'    =>$request->status,
-            'detail'    =>$request->detail
-        ]);
+        $input = new DateTime($request->tanggal);
+        // dd($input);
 
-        Toast::title('Data Pengiriman Diubah')->autoDismiss(3);
+        function validateD($input){
+            $today = new DateTime();
 
-        return to_route('pengiriman.index');
+            if ($input < $today) {
+                return false;
+            }else{
+                return true;
+            }
+        };
+        
+        if (validateD($input)) {  
+            $pengiriman->update([
+                'pengirim'  =>Auth::user()->name,
+                'nomor'     =>$request->nomor,
+                'tanggal'   =>$request->tanggal,
+                'asal'      =>$request->asal,
+                'tujuan'    =>$request->tujuan,
+                'status'    =>$request->status,
+                'detail'    =>$request->detail
+            ]);
+
+            // return redirect()->route('users.index');
+
+            Toast::title('Data Pengiriman Tersimpan')->autoDismiss(3);
+
+            return to_route('pengiriman.index');
+        }else{
+            Toast::title('Tanggal tidak valid')->danger()->autoDismiss(3);
+
+            return to_route('pengiriman.index');
+        }
     }
 
     /**

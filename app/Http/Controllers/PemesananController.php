@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use App\Models\Armada;
 use App\Models\Pemesanan;
 use Illuminate\Http\Request;
@@ -55,23 +56,43 @@ class PemesananController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        $input = new DateTime($request->tanggal);
+        // dd($input);
 
-        Pemesanan::create([
-            'pemesan'   =>Auth::user()->name,
-            'jenis'     =>$request->jenis,
-            'tanggal'   =>$request->tanggal,
-            'detail'    =>$request->detail
-        ]);
+        function validateDate($input){
+            $today = new DateTime();
 
-        $armada = Armada::where('jenis',$request->jenis)->first();
-        $armada->update([
-            'ketersediaan' => 'Tidak tersedia'
-        ]);
+            if ($input < $today) {
+                return false;
+            }else{
+                return true;
+            }
+        };
 
-        Toast::title('Data Pemesanan Tersimpan')->autoDismiss(3);
-
-        return to_route('pemesanan.index');
+        if (validateDate($input)) {  
+            $armada = Armada::where('id',$request->armada_id)->first();
+            $armada->update([
+                'ketersediaan' => 'Tidak tersedia'
+            ]);
+            $armada_id = $armada->id;
+            $jenis = $armada->jenis;
+            
+            Pemesanan::create([
+                'pemesan'   =>Auth::user()->name,
+                'jenis'     =>$jenis,
+                'armada_id' =>$armada_id,
+                'tanggal'   =>$input,
+                'detail'    =>$request->detail
+            ]);
+    
+            Toast::title('Data Pemesanan Tersimpan')->autoDismiss(3);
+    
+            return to_route('pemesanan.index');
+        }else{
+            Toast::title('Tanggal tidak valid')->danger()->autoDismiss(3);
+    
+            return to_route('pemesanan.index');
+        }
     }
 
     /**
@@ -87,7 +108,7 @@ class PemesananController extends Controller
      */
     public function edit(Pemesanan $pemesanan)
     {
-        $armada = Armada::where('jenis',$pemesanan->jenis)->first();
+        $armada = Armada::where('id',$pemesanan->armada_id)->first();
         $armada->update([
             'ketersediaan' => 'Tersedia'
         ]);
@@ -104,21 +125,43 @@ class PemesananController extends Controller
      */
     public function update(Request $request, Pemesanan $pemesanan)
     {
-        $pemesanan->update([
-            'pemesan'   =>Auth::user()->name,
-            'jenis'     =>$request->jenis,
-            'tanggal'   =>$request->tanggal,
-            'detail'    =>$request->detail
-        ]);
+        $input = new DateTime($request->tanggal);
+        // dd($input);
 
-        $armada = Armada::where('jenis',$request->jenis)->first();
-        $armada->update([
-            'ketersediaan' => 'Tidak tersedia'
-        ]);
+        function validateD($input){
+            $today = new DateTime();
 
-        Toast::title('Data Pemesanan Diubah')->autoDismiss(3);
+            if ($input < $today) {
+                return false;
+            }else{
+                return true;
+            }
+        };
 
-        return to_route('pemesanan.index');
+        if (validateD($input)) {  
+            $armada = Armada::where('id',$request->armada_id)->first();
+            $armada->update([
+                'ketersediaan' => 'Tidak tersedia'
+            ]);
+            $armada_id = $armada->id;
+            $jenis = $armada->jenis;
+            
+            $pemesanan->update([
+                'pemesan'   =>Auth::user()->name,
+                'jenis'     =>$jenis,
+                'armada_id' =>$armada_id,
+                'tanggal'   =>$input,
+                'detail'    =>$request->detail
+            ]);
+    
+            Toast::title('Data Pemesanan Tersimpan')->autoDismiss(3);
+    
+            return to_route('pemesanan.index');
+        }else{
+            Toast::title('Tanggal tidak valid')->danger()->autoDismiss(3);
+    
+            return to_route('pemesanan.index');
+        }
     }
 
     /**
@@ -126,7 +169,7 @@ class PemesananController extends Controller
      */
     public function destroy(Pemesanan $pemesanan)
     {
-        $armada = Armada::where('jenis',$pemesanan->jenis)->first();
+        $armada = Armada::where('id',$pemesanan->armada_id)->first();
         $armada->update([
             'ketersediaan' => 'Tersedia'
         ]);

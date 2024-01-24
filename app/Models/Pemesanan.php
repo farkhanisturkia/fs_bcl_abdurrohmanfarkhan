@@ -12,6 +12,7 @@ class Pemesanan extends Model
     protected $fillable = [
         'pemesan',
         'jenis',
+        'armada_id',
         'tanggal',
         'detail',
     ];
