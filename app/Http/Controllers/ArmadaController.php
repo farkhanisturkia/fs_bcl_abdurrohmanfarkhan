@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Armada;
 use Illuminate\Http\Request;
+use PHPUnit\TextUI\Configuration\Php;
 use ProtoneMedia\Splade\SpladeForm;
 use ProtoneMedia\Splade\SpladeTable;
 use ProtoneMedia\Splade\Facades\Toast;
@@ -17,6 +18,8 @@ class ArmadaController extends Controller
      */
     public function index()
     {
+        $armadas = Armada::Get();
+
         return view('armada.index', [
             'armadas' => SpladeTable::for(Armada::class)
                 ->column('nomor')
@@ -24,6 +27,19 @@ class ArmadaController extends Controller
                 ->column('ketersediaan')
                 ->column('kapasitas')
                 ->column('actions')
+                ->selectFilter('jenis',[
+                    'Darat' => 'Darat',
+                    'Udara' => 'udara',
+                    'Laut'  => 'Laut'
+                ], 
+                noFilterOption: true,
+                noFilterOptionLabel: 'Semua')
+                ->selectFilter('ketersediaan', [
+                    'Tersedia'       => 'Tersedia',
+                    'Tidak tersedia' => 'Tidak tersedia'
+                ], 
+                noFilterOption: true,
+                noFilterOptionLabel: 'Semua')
                 ->paginate(15),
         ]);
     }

@@ -1,66 +1,43 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# About Role and Login
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Terdapat 3 Role yaitu :
+- kantor
+- lapangan
+- client
 
-## About Laravel
+Gunakan php artisan migrate:fresh --seed untuk menggunakan akun user 3 role ini :
+- kantor 
+-- Email : zalfa@gmail.com
+-- pass  : password
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- lapangan 
+-- Email : farkhan@gmail.com
+-- pass  : password
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- client
+-- Email : valent@gmail.com
+-- pass  : password
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# About Fitur
 
-## Learning Laravel
+## kantor 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Dashboard
+### Data Pengiriman
+--- Melihat [pengirim, Nomor pengiriman, Tanggal pengiriman, Lokasi asal pengiriman, Lokasi tujuan pengiriman, Status pengiriman (tertunda, dalam perjalanan, telah tiba), Detail barang yang dikirim]
+--- Data Pengirim akan di inputkan Auto berdasarkan user yang login dengan role lapangan dan melakukan pengisian data pengiriman
+### Data Armada
+--- Melihat / Menambahkan / Mengedit / Menghapus [Nomor armada, Jenis Armada, Ketersediaan Armada (Tersedia, Tidak tersedia), Kapasitas Armada]
+--- Data ketersediaan dari suatu armada akan Auto berubah menjadi Tidak tersedia ketika user dengan role client melakukan login dan memesan dengan jenis armada tersebut
+### Data Pemesanan
+--- Melihat [pemesan, Jenis Armada, Tanggal pemesanan, Detail barang yang dikirim]
+--- Data pemesan akan di inputkan Auto berdasarkan user yang login dengan role client dan melakukan pemesanan
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## lapangan 
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+-- Data Pengiriman : Melihat / Menambahkan / Mengedit / Menghapus [Nomor pengiriman, Tanggal pengiriman, Lokasi asal pengiriman, Lokasi tujuan pengiriman, Status pengiriman (tertunda, dalam perjalanan, telah tiba), Detail barang yang dikirim]
+-- pass  : password
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- client
+-- Email : valent@gmail.com
+-- pass  : password

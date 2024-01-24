@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('armadas', function (Blueprint $table) {
             $table->id();
             $table->string('nomor');
-            $table->string('jenis');
+            $table->enum('jenis',['Darat', 'Udara', 'Laut']);
             $table->enum('ketersediaan', ['Tersedia', 'Tidak tersedia']);
             $table->integer('kapasitas');
             $table->timestamps();

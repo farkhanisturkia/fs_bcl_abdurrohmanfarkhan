@@ -30,6 +30,8 @@ class PengirimanController extends Controller
                     ->column('tujuan')
                     ->column('status')
                     ->column('detail')
+                    ->searchInput('nomor')
+                    ->searchInput('tujuan')
                     ->paginate(15),
             ]);
         }
@@ -43,6 +45,8 @@ class PengirimanController extends Controller
                     ->column('status')
                     ->column('detail')
                     ->column('actions')
+                    ->searchInput('nomor')
+                    ->searchInput('tujuan')
                     ->paginate(15),
             ]);
         }

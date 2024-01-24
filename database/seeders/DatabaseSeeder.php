@@ -42,22 +42,46 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Armada::create([
-            'nomor'         => '001',
-            'jenis'         => 'Kontainer',
+            'nomor'         => '1-1',
+            'jenis'         => 'Darat',
             'ketersediaan'  => 'Tersedia',
-            'kapasitas'     => '2000'
+            'kapasitas'     => '300'
         ]);
         Armada::create([
-            'nomor'         => '002',
-            'jenis'         => 'truck',
+            'nomor'         => '1-2',
+            'jenis'         => 'Darat',
+            'ketersediaan'  => 'Tersedia',
+            'kapasitas'     => '320'
+        ]);
+        Armada::create([
+            'nomor'         => '1-3',
+            'jenis'         => 'Darat',
+            'ketersediaan'  => 'Tersedia',
+            'kapasitas'     => '120'
+        ]);
+        Armada::create([
+            'nomor'         => '2-1',
+            'jenis'         => 'Udara',
             'ketersediaan'  => 'Tersedia',
             'kapasitas'     => '800'
         ]);
         Armada::create([
-            'nomor'         => '003',
-            'jenis'         => 'Pick up',
+            'nomor'         => '2-2',
+            'jenis'         => 'Udara',
             'ketersediaan'  => 'Tersedia',
-            'kapasitas'     => '300'
+            'kapasitas'     => '750'
+        ]);
+        Armada::create([
+            'nomor'         => '3-1',
+            'jenis'         => 'Laut',
+            'ketersediaan'  => 'Tersedia',
+            'kapasitas'     => '2000'
+        ]);
+        Armada::create([
+            'nomor'         => '3-2',
+            'jenis'         => 'Laut',
+            'ketersediaan'  => 'Tersedia',
+            'kapasitas'     => '3000'
         ]);
     }
 }

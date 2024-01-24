@@ -13,12 +13,16 @@
 
                     <x-splade-form action="{{ route('armada.store') }}" class="space-y-4">
                         <x-splade-input id="nomor" type="text" name="nomor" label="Nomor Armada" required />
-                        <x-splade-input id="jenis" type="text" name="jenis" label="Jenis Kendaraan Armada" required />
-                        <x-splade-select name="ketersediaan" label='Ketersediaan Armada'>
+                        <x-splade-select name="jenis" label="Jenis Kendaraan Armada" required>
+                            <option value="Darat">Darat</option>
+                            <option value="Udara">Udara</option>
+                            <option value="Laut">Laut</option>
+                        </x-splade-select>
+                        <x-splade-select name="ketersediaan" label='Ketersediaan Armada' required>
                             <option value="Tersedia">Tersedia</option>
                             <option value="Tidak Tersedia">Tidak Tersedia</option>
                         </x-splade-select>
-                        <x-splade-input id="kapasitas" name="kapasitas" label='Kapasitas Armada' autosize />
+                        <x-splade-input id="kapasitas" name="kapasitas" label='Kapasitas Armada' required />
                         <x-splade-submit class="ml-4" label="Submit" />
                     </x-splade-form>
                 </div>
