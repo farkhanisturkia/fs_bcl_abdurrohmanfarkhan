@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DateTime;
 use App\Models\Pengiriman;
+use App\Tables\Pengirimen;
 use Illuminate\Http\Request;
 use ProtoneMedia\Splade\SpladeForm;
 use Illuminate\Support\Facades\Auth;
@@ -23,17 +24,7 @@ class PengirimanController extends Controller
     {
         if (Auth::user()->role == 'kantor') {
             return view('pengiriman.index', [
-                'pengirimen' => SpladeTable::for(Pengiriman::class)
-                    ->column('pengirim')
-                    ->column('nomor')
-                    ->column('tanggal')
-                    ->column('asal')
-                    ->column('tujuan')
-                    ->column('status')
-                    ->column('detail')
-                    ->searchInput('nomor')
-                    ->searchInput('tujuan')
-                    ->paginate(15),
+                'pengirimen' => Pengirimen::class
             ]);
         }
         if (Auth::user()->role == 'lapangan') {

@@ -2,13 +2,13 @@
 
 namespace App\Tables;
 
-use App\Models\Pemesanan;
+use App\Models\Pengiriman;
+use GuzzleHttp\Psr7\Query;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
-use ProtoneMedia\Splade\SpladeTable;
 use ProtoneMedia\Splade\AbstractTable;
+use ProtoneMedia\Splade\SpladeTable;
 
-class Pemesanans extends AbstractTable
+class Pengirimen extends AbstractTable
 {
     /**
      * Create a new instance.
@@ -37,7 +37,7 @@ class Pemesanans extends AbstractTable
      */
     public function for()
     {
-        return Pemesanan::query();
+        return Pengiriman::query();
     }
 
     /**
@@ -51,21 +51,27 @@ class Pemesanans extends AbstractTable
         $table
             // ->withGlobalSearch(columns: ['id'])
             ->column('id', sortable: true)
-            ->column('pemesan')
-            ->column('jenis')
+            ->column('pengirim')
+            ->column('nomor')
             ->column('tanggal')
+            ->column('asal')
+            ->column('tujuan')
+            ->column('status')
             ->column('detail')
-            // ->export(
-            //     label: 'CSV export',
-            //     filename: 'Pemesanan.csv'
-            // )
+            ->searchInput('nomor')
+            ->searchInput('tujuan')
+            ->export(
+                label: 'CSV export',
+                filename: 'Pengiriman.csv',
+            )
+            ->selectFilter('status',[
+                'Tertunda' => 'Tertunda',
+                'Dalam perjalanan' => 'Dalam perjalanan',
+                'Telah tiba'  => 'Telah tiba'
+            ], 
+            noFilterOption: true,
+            noFilterOptionLabel: 'Semua')
             ->paginate(15);
 
-            // ->searchInput()
-            // ->selectFilter()
-            // ->withGlobalSearch()
-
-            // ->bulkAction()
-            // ->export()
     }
 }
