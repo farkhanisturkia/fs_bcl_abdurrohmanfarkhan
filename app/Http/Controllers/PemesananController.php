@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use CSV;
 use DateTime;
 use App\Models\Armada;
 use App\Models\Pemesanan;
+use App\Tables\Pemesanans;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use ProtoneMedia\Splade\SpladeTable;
 use ProtoneMedia\Splade\Facades\Toast;
 
@@ -19,12 +22,7 @@ class PemesananController extends Controller
     {
         if (Auth::user()->role == 'kantor') {
             return view('pemesanan.index', [
-                'pemesanan' => SpladeTable::for(Pemesanan::class)
-                    ->column('pemesan')
-                    ->column('jenis')
-                    ->column('tanggal')
-                    ->column('detail')
-                    ->paginate(15),
+                'pemesanan' => Pemesanans::class
             ]);
         }
         if (Auth::user()->role == 'client') {
