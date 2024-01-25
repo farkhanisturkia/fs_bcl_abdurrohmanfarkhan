@@ -11,9 +11,9 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     @if (Auth::user()->role == 'lapangan')
                         
-                    <Link href="/pengiriman/create" class="px-4 py-2 bg-green-500 rounded text-white hover:bg-green-300 hover:text-black">Tambah Data</Link>
+                    <Link href="/pengiriman/create" class="px-4 py-2 bg-green-500 rounded text-white hover:bg-green-300 hover:text-black">Tambah Pengiriman</Link>
                     @endif
-                    <x-splade-table :for="$pengirimen" pagination-scroll="preserve">
+                    <x-splade-table class="mt-4" :for="$pengirimen" pagination-scroll="preserve">
                         <x-splade-cell actions as="$pengiriman">
                             <Link href="{{ route('pengiriman.edit', $pengiriman) }}" class="px-3 py-2 bg-yellow-500 rounded text-white hover:bg-yellow-300 hover:text-black"> Ubah </Link>
                             @if ($pengiriman->status == 'Dalam perjalanan')
