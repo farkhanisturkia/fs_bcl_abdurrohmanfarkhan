@@ -38,6 +38,7 @@ class Pengirimen extends AbstractTable
     public function for()
     {
         return Pengiriman::query();
+        // return Pengiriman::query()->where('status','Dalam perjalanan'); jika mau di beri query status
     }
 
     /**

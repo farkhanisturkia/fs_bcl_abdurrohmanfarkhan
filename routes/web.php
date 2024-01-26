@@ -46,10 +46,10 @@ Route::middleware('splade')->group(function () {
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
 
-    Route::resource('armada', ArmadaController::class);
-    Route::resource('pengiriman', PengirimanController::class);
-    Route::resource('pemesanan', PemesananController::class);
-    Route::resource('checkin', CheckinController::class);
+    Route::resource('armada', ArmadaController::class)->middleware('auth');
+    Route::resource('pengiriman', PengirimanController::class)->middleware('auth');
+    Route::resource('pemesanan', PemesananController::class)->middleware('auth');
+    Route::resource('checkin', CheckinController::class)->middleware('auth');
 
     require __DIR__.'/auth.php';
 });
